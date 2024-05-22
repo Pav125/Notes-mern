@@ -13,7 +13,7 @@ function NotesMain() {
   useEffect(
     () => {
       if (!cookies.token) {
-        navigate('/signup')
+        navigate('/login')
       }
     }, [cookies, navigate]
   )

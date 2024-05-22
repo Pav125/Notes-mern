@@ -69,7 +69,7 @@ const Signup = () => {
                 <button type="submit" className="btn btn-primary">Signup</button>
             </form>
             <div>
-                <h3 className='mt-3'>Already a user? <Link className='ms-3' to='/'>Login</Link></h3>
+                <h3 className='mt-3'>Already a user? <Link className='ms-3' to='/login'>Login</Link></h3>
             </div>
         </div>
     );

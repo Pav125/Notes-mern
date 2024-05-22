@@ -18,7 +18,7 @@ const Nav = () => {
         try {
             await removeCookie('token');
             console.log(cookies.token);
-            navigate('/');
+            navigate('/login');
         } catch (error) {
             console.error('Error removing cookie:', error);
             // Handle potential errors during cookie removal

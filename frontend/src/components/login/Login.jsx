@@ -9,16 +9,16 @@ const Login = () => {
     const location = useLocation();
     const isLoginPage = location.pathname === "/";
     const [cookies, removeCookie] = useCookies([]);
+    const navigate = useNavigate();
 
     useEffect(() => {
-        if (isLoginPage && cookies.token) {
-            removeCookie("token"); // Remove cookie if on login page and cookie exists
+        if (cookies.token && window.location.pathname === "/") {
+          navigate('/'); // Redirect to Home if cookie exists and on login page
         }
-    }, [cookies, removeCookie, isLoginPage]);
+      }, [cookies, navigate]);    
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const navigate = useNavigate();
 
     const [errors, setErrors] = useState({
         email: '',
@@ -57,7 +57,7 @@ const Login = () => {
             try {
                 const response = await axios.post('http://localhost:8080/api/auth/login', { email, password }, { withCredentials: true });
                 console.log(response.data);
-                navigate('/Home');
+                navigate('/');
             } catch (error) {
                 console.error('Login failed:', error.response.data.message);
             }
