@@ -1,0 +1,42 @@
+.container {
+    max-width: 500px;
+    margin: auto;
+    padding: 20px;
+    background-color: #f7f7f7;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1, h2 {
+    color: #333;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.form-label {
+    font-weight: bold;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    width: 100%;
+}
+
+.text-danger {
+    color: red;
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+    }
+
+    .btn-primary {
+        padding: 8px 16px;
+    }
+}

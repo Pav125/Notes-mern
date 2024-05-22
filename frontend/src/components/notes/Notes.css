@@ -1,0 +1,53 @@
+Notes.css
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+}
+
+h1 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    text-align: center;
+}
+
+h2 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    color: #6c757d;
+}
+
+.form {
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+    max-width: 600px;
+    margin: auto;
+}
+
+.form-label {
+    font-weight: 500;
+    color: #495057;
+}
+
+.form-control {
+    border-radius: 0.25rem;
+    border: 1px solid #ced4da;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+}
+
+@media (max-width: 576px) {
+    .form {
+        padding: 1rem;
+    }
+}

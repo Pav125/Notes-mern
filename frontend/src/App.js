@@ -1,8 +1,8 @@
 import './App.css';
 import Login from './components/login/Login';
 import NotesMain from './components/notes/NotesMain';
-import Signup from './components/singup/Signup';
-import { Route, Routes, useNavigate } from 'react-router-dom';
+import Signup from './components/signup/Signup';
+import { Route, Routes, useNavigate, Navigate } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
 import { useEffect } from 'react';
 
@@ -11,7 +11,7 @@ function App() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (cookies.token) {
+    if (cookies.token && cookies.token !== undefined) {
       navigate('/');
     }
   }, [cookies, navigate]);
@@ -19,11 +19,16 @@ function App() {
   return (
     <div className="App">
       <Routes>
-        {cookies.token && (<Route path='/' element={<NotesMain />} />)}
-        {!cookies.token && (
+        {(cookies.token && cookies.token !== undefined) ? (
+          <>
+            <Route path='/' element={<NotesMain />} />
+            <Route path='*' element={<Login />} />
+          </>
+        ) : (
           <>
             <Route path='/login' element={<Login />} />
             <Route path='/signup' element={<Signup />} />
+            <Route path='*' element={<Signup />} />
           </>
         )}
       </Routes>

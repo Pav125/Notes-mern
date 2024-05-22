@@ -1,9 +1,9 @@
 import { useState } from "react";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Notes = ({ addNote, user }) => {
-
     const [title, setTitle] = useState('');
-    const [note, setNote] = useState('')
+    const [note, setNote] = useState('');
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -16,10 +16,10 @@ const Notes = ({ addNote, user }) => {
 
     return (
         <>
-            <h1 className="mt-3" >Welcome {user}</h1>
-            <div className="container mt-3 justify-content-center align-item mb-5">
+            <h1 className="mt-3 text-center">Welcome {user}</h1>
+            <div className="container mt-3 justify-content-center align-items-center mb-5">
                 <h2 className="text-center">Add a new note</h2>
-                <form className="form p-3" onSubmit={handleSubmit}>
+                <form className="p-3" onSubmit={handleSubmit}>
                     <div className="mb-3">
                         <label htmlFor="title" className="form-label">Title</label>
                         <input
@@ -44,11 +44,9 @@ const Notes = ({ addNote, user }) => {
                     </div>
                     <button type="submit" className="btn btn-primary">Add Note</button>
                 </form>
-
             </div>
-
         </>
-    )
-}
+    );
+};
 
-export default Notes
+export default Notes;

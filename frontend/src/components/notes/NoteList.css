@@ -1,0 +1,58 @@
+/* NoteList.css */
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+}
+
+.note-card {
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.note-card .form-control {
+    margin-bottom: 1rem;
+    border-radius: 0.25rem;
+    border: 1px solid #ced4da;
+}
+
+.note-card .btn {
+    margin-right: 0.5rem;
+}
+
+.note-card .btn-secondary {
+    background-color: #6c757d;
+    border: none;
+}
+
+.note-card .btn-danger {
+    background-color: #dc3545;
+    border: none;
+}
+
+.note-card .btn-secondary:hover,
+.note-card .btn-danger:hover {
+    opacity: 0.85;
+}
+
+.note-card .card-title {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+}
+
+.note-card .card-text {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+}
+
+@media (max-width: 576px) {
+    .note-card {
+        margin-bottom: 1rem;
+    }
+
+    .note-card .btn {
+        margin-bottom: 0.5rem;
+    }
+}

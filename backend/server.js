@@ -7,6 +7,8 @@ const AuthRoute = require('./routes/AuthRoute')
 require('dotenv').config()
 const { MONGO_URL, PORT } = process.env
 
+const cookiesMiddleware = require('universal-cookie-express');
+
 const app = express()
 
 app.use(
@@ -18,8 +20,9 @@ app.use(
 )
 
 app.use(express.json())
-app.use(cookieParser())
 app.use(express.urlencoded({extended : false}))
+app.use(cookieParser())
+app.use(cookiesMiddleware())
 
 // routes
 app.use('/api/notes', NoteRoute)

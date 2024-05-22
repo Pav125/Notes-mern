@@ -1,29 +1,24 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import { useLocation } from "react-router-dom";
 import { useCookies } from "react-cookie";
+import './Login.css';
+import image from './log.png'; // Import your image file
 
 const Login = () => {
-
     const location = useLocation();
     const isLoginPage = location.pathname === "/";
     const [cookies, removeCookie] = useCookies([]);
-    const navigate = useNavigate();
-
-    useEffect(() => {
-        if (cookies.token && window.location.pathname === "/") {
-          navigate('/'); // Redirect to Home if cookie exists and on login page
-        }
-      }, [cookies, navigate]);    
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const navigate = useNavigate();
 
     const [errors, setErrors] = useState({
         email: '',
         password: ''
-    })
+    });
 
     const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
@@ -46,7 +41,7 @@ const Login = () => {
             setErrors((errors) => ({ ...errors, password: 'Enter Password' }));
             hasError = true;
         } else if (password.trim().length < 6) {
-            setErrors((errors) => ({ ...errors, password: 'Password should be min 8 characters' }));
+            setErrors((errors) => ({ ...errors, password: 'Password should be min 6 characters' }));
             hasError = true;
         } else {
             setErrors((errors) => ({ ...errors, password: '' }));
@@ -65,26 +60,33 @@ const Login = () => {
     };
 
     return (
-        <>{isLoginPage && cookies.token && removeCookie("token")}
+        <>
+            {isLoginPage && cookies.token && removeCookie("token")}
             <div className="container mt-5">
-                <h1 className='mb-5 text-center'>Want to secure your notes ?</h1>
-
-                <form onSubmit={handleLogin}>
-                    <h2 className='text-center'>Login</h2>
-                    <div className="mb-3">
-                        <label htmlFor="email" className="form-label">Email</label>
-                        <input type="email" id="email" className="form-control" value={email} onChange={(e) => setEmail(e.target.value)} required />
-                        {errors.email && <span className='text-danger'>{errors.email}</span>}
+                <div className="row">
+                    <div className="col-md-6">
+                        <img src={image} alt="Login Image" className="img-fluid mb-4" />
                     </div>
-                    <div className="mb-3">
-                        <label htmlFor="password" className="form-label">Password</label>
-                        <input type="password" id="password" className="form-control" value={password} onChange={(e) => setPassword(e.target.value)} required />
-                        {errors.password && <span className='text-danger'>{errors.password}</span>}
+                    <div className="col-md-6">
+                        <h1 className='mb-5 text-center'>Want to secure your notes?</h1>
+                        <form onSubmit={handleLogin}>
+                            <h2 className='text-center'>Login</h2>
+                            <div className="mb-3">
+                                <label htmlFor="email" className="form-label">Email</label>
+                                <input type="email" id="email" className="form-control" value={email} onChange={(e) => setEmail(e.target.value)} required />
+                                {errors.email && <span className='text-danger'>{errors.email}</span>}
+                            </div>
+                            <div className="mb-3">
+                                <label htmlFor="password" className="form-label">Password</label>
+                                <input type="password" id="password" className="form-control" value={password} onChange={(e) => setPassword(e.target.value)} required />
+                                {errors.password && <span className='text-danger'>{errors.password}</span>}
+                            </div>
+                            <button type="submit" className="btn btn-primary w-100">Login</button>
+                        </form>
+                        <div className="mt-3 text-center">
+                            <h5>New user? <Link to='/signup'>Signup</Link></h5>
+                        </div>
                     </div>
-                    <button type="submit" className="btn btn-primary">Login</button>
-                </form>
-                <div>
-                    <h3 className='mt-3'>New user? <Link className='ms-3' to='/signup'>Signup</Link></h3>
                 </div>
             </div>
         </>
