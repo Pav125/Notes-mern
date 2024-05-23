@@ -6,7 +6,7 @@ const NoteRoute = require('./routes/NoteRoute')
 const AuthRoute = require('./routes/AuthRoute')
 require('dotenv').config()
 const { MONGO_URL } = process.env
-const port = process.env.PORT || 4000;
+const PORT = process.env.PORT || 4000;
 
 const cookiesMiddleware = require('universal-cookie-express');
 
