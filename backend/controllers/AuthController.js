@@ -22,7 +22,8 @@ module.exports.Signup = async (req, res, next) => {
             withCredentials: true,
             httpOnly: false,
             secure: true,
-            sameSite: 'None'
+            sameSite: 'None',
+            domain: 'https://mymemo.vercel.app'
         })
 
         res
@@ -62,7 +63,8 @@ module.exports.Login = async (req, res, next) => {
             withCredentials: true,
             httpOnly: false,
             secure: true,
-            sameSite: 'None'
+            sameSite: 'None',
+            domain: 'https://mymemo.vercel.app'
         })
 
         res.status(200).json({ message: "Yay! logged in successfully", state: true, user })
