@@ -1,5 +1,5 @@
 import { useState } from "react";
-import 'bootstrap/dist/css/bootstrap.min.css';
+// import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Notes = ({ addNote, user }) => {
     const [title, setTitle] = useState('');

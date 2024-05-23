@@ -3,18 +3,16 @@ import NoteList from './NoteList';
 import { useEffect, useState, useMemo } from 'react';
 import axios from 'axios';
 import { useCookies } from 'react-cookie';
-import { useNavigate } from 'react-router-dom';
 import Nav from '../nav/Nav';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function NotesMain() {
-    const navigate = useNavigate();
+
     const [cookies] = useCookies([]);
-
     const [user, updateUser] = useState('');
-    const api = useMemo(() => axios.create({ baseURL: 'http://localhost:8080/api/notes' }), []);
-
     const [notes, setNotes] = useState([]);
+
+    const api = useMemo(() => axios.create({ baseURL: 'http://localhost:8080/api/notes' }), []);
 
     useEffect(() => {
         const fetchNotes = async () => {

@@ -3,7 +3,7 @@ const Note = require('../models/NoteModel')
 // Get all notes for the authenticated user
 const getNotes = async (req, res) => {
     try {
-        const notes = await Note.find({ user: req.user._id })
+        const notes = await Note.find({ user: req.user._id }).sort({ createdAt: -1 });
         res.status(200).json({ notes, user: req.user })
     } catch (error) {
         res.status(500).json({ message: error.message })

@@ -1,15 +1,10 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
-import { useLocation } from "react-router-dom";
-import { useCookies } from "react-cookie";
 import './Login.css';
 import image from './log.png'; // Import your image file
 
 const Login = () => {
-    const location = useLocation();
-    const isLoginPage = location.pathname === "/";
-    const [cookies, removeCookie] = useCookies([]);
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -61,11 +56,11 @@ const Login = () => {
 
     return (
         <>
-            {isLoginPage && cookies.token && removeCookie("token")}
+            {/* {isLoginPage && cookies.token && removeCookie("token")} */}
             <div className="container mt-5">
                 <div className="row">
                     <div className="col-md-6">
-                        <img src={image} alt="Login Image" className="img-fluid mb-4" />
+                        <img src={image} alt="Login" className="img-fluid mb-4" />
                     </div>
                     <div className="col-md-6">
                         <h1 className='mb-5 text-center'>Want to secure your notes?</h1>

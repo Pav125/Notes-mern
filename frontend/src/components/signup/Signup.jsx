@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
-import 'bootstrap/dist/css/bootstrap.min.css';
+// import 'bootstrap/dist/css/bootstrap.min.css';
 import image from './sig.png'; // Import your image file
 
 const Signup = () => {
@@ -82,7 +82,7 @@ const Signup = () => {
                     </div>
                 </div>
                 <div className="col-lg-6 col-md-4 order-1 order-md-2 d-flex align-items-center">
-                    <img src={image} alt="Signup Image" className="img-fluid" />
+                    <img src={image} alt="Signup" className="img-fluid" />
                 </div>
             </div>
         </div>
