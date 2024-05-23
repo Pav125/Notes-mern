@@ -20,8 +20,8 @@ function NotesMain() {
                 const { data } = await api.get('/', { withCredentials: true });
                 updateUser(data.user.username);
                 setNotes(data.notes);
-                console.log(data);
-                console.log(cookies.token);
+                // console.log(data);
+                // console.log(cookies.token);
             } catch (error) {
                 console.error('Error fetching notes: ', error);
             }

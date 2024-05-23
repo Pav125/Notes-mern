@@ -16,6 +16,7 @@ const Nav = () => {
             console.log(cookies.token);
             console.log(cookies);
             navigate('/login');
+            alert('Logged out succesfully')
         } catch (error) {
             console.error('Error removing cookie:', error);
         } finally {

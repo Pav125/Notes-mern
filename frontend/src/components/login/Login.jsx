@@ -46,10 +46,17 @@ const Login = () => {
         if (!hasError) {
             try {
                 const response = await axios.post('http://localhost:8080/api/auth/login', { email, password }, { withCredentials: true });
-                console.log(response.data);
+                console.log(response.data.message);
+                alert(response.data.message)
                 navigate('/');
             } catch (error) {
-                console.error('Login failed:', error.response.data.message);
+                if (error.response && error.response.data && error.response.data.message) {
+                    alert(error.response.data.message);
+                } else {
+                    console.error('Login failed:', error.response.data.message);
+                    alert('Login failed');
+                }
+                
             }
         }
     };

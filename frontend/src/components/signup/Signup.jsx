@@ -48,9 +48,15 @@ const Signup = () => {
                 { withCredentials: true }
             );
             console.log(response.data);
+            alert(response.data.message) 
             navigate('/');
         } catch (error) {
-            console.error('Signup failed:', error.response.data.message);
+            if (error.response && error.response.data && error.response.data.message) {
+                alert(error.response.data.message);
+            } else {
+                console.error('Signup failed:', error);
+                alert('Signup failed');
+            }
         }
     };
 
