@@ -13,9 +13,10 @@ const app = express()
 
 app.use(
     cors({
-        origin: ['http://localhost:3000','https://mymemo.vercel.app'],
+        origin: ['https://mymemo.vercel.app'],
         methods: ['GET', 'POST', 'PUT', 'DELETE'],
-        credentials: true
+        credentials: true,
+        allowedHeaders: ['Content-Type', 'Authorization']
     })
 )
 
