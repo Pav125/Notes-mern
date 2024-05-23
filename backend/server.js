@@ -13,7 +13,7 @@ const app = express()
 
 app.use(
     cors({
-        origin: ['http://localhost:3000','https://deploy-mern-1whq.vercel.app'],
+        origin: ['http://localhost:3000'],
         methods: ['GET', 'POST', 'PUT', 'DELETE'],
         credentials: true
     })
@@ -39,7 +39,7 @@ mongoose.connect(
 )
     .then(() => {
         console.log('Connected to Database !')
-        app.listen(8080, () => {
+        app.listen(PORT, () => {
             console.log('server is listening on 8080')
         })
     })
