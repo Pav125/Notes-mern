@@ -11,8 +11,8 @@ const Nav = () => {
     const handleLogOut = async () => {
         console.time('cookieRemoval'); // Start timer
         try {
-            await removeCookie('token', { path: '/', domain: 'localhost' });
-            cookies.remove('token', { path: "/", domain: "localhost" });
+            await removeCookie('token', { path: '/', domain: 'mymemo.vercel.app' });
+            cookies.remove('token', { path: "/", domain: "mymemo.vercel.app" });
             console.log(cookies.token);
             console.log(cookies);
             navigate('/login');

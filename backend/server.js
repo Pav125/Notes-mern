@@ -40,7 +40,7 @@ mongoose.connect(
 )
     .then(() => {
         console.log('Connected to Database !')
-        app.listen(PORT || 8080, () => {
+        app.listen(PORT, () => {
             console.log('server is listening on 8080')
         })
     })
