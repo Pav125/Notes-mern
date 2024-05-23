@@ -20,7 +20,7 @@ module.exports.Signup = async (req, res, next) => {
 
         res.cookie('token', token, {
             withCredentials: true,
-            httpOnly: false,
+            httpOnly: true,
             secure: true,
             sameSite: 'none',
             domain: 'https://mymemo.vercel.app'
@@ -61,7 +61,7 @@ module.exports.Login = async (req, res, next) => {
 
         res.cookie('token', token, {
             withCredentials: true,
-            httpOnly: false,
+            httpOnly: true,
             secure: true,
             sameSite: 'none',
             domain: 'https://mymemo.vercel.app'
