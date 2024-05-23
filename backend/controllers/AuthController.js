@@ -22,7 +22,7 @@ module.exports.Signup = async (req, res, next) => {
             withCredentials: true,
             httpOnly: false,
             secure: true,
-            sameSite: 'None',
+            sameSite: 'none',
             domain: 'https://mymemo.vercel.app'
         })
 
@@ -63,7 +63,7 @@ module.exports.Login = async (req, res, next) => {
             withCredentials: true,
             httpOnly: false,
             secure: true,
-            sameSite: 'None',
+            sameSite: 'none',
             domain: 'https://mymemo.vercel.app'
         })
 
