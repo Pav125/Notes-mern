@@ -12,13 +12,15 @@ const cookiesMiddleware = require('universal-cookie-express');
 const app = express()
 
 app.use(
-    cors({
-        origin: ['https://mymemo.vercel.app'],
-        methods: ['GET', 'POST', 'PUT', 'DELETE'],
-        credentials: true,
-        allowedHeaders: ['Content-Type', 'Authorization']
-    })
+    cors()
 )
+
+// {
+//     origin: ['http://localhost:3000'], // 'https://mymemo.vercel.app',
+//     methods: ['GET', 'POST', 'PUT', 'DELETE'],
+//     credentials: true,
+//     allowedHeaders: ['Content-Type', 'Authorization']
+// }
 
 app.use(express.json())
 app.use(express.urlencoded({extended : false}))
