@@ -3,12 +3,14 @@ import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import './Login.css';
 import image from './log.png'; // Import your image file
+import { useCookies } from 'react-cookie';
 
 const Login = () => {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
+    const [cookies] = useCookies([])
 
     const [errors, setErrors] = useState({
         email: '',
@@ -45,7 +47,8 @@ const Login = () => {
         // Check if there are any errors before making the POST request
         if (!hasError) {
             try {
-                const response = await axios.post('https://notes-mern-api-2bpf.onrender.com/api/auth/login', { email, password }, { withCredentials: true });
+                const response = await axios.post('https://notes-api-1i7v.onrender.com/api/auth/login', { email, password }, { withCredentials: true });
+                console.log(cookies)
                 console.log(response.data.message);
                 alert(response.data.message)
                 navigate('/');

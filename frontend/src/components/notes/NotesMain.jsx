@@ -13,7 +13,7 @@ function NotesMain() {
     const [user, updateUser] = useState('');
     const [notes, setNotes] = useState([]);
 
-    const api = useMemo(() => axios.create({ baseURL: 'https://notes-mern-api-2bpf.onrender.com/api/notes' }), []);
+    const api = useMemo(() => axios.create({ baseURL: 'https://notes-api-1i7v.onrender.com/api/notes' }), []);
 
     useEffect(() => {
         const fetchNotes = async () => {
