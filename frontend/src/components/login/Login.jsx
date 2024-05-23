@@ -45,7 +45,7 @@ const Login = () => {
         // Check if there are any errors before making the POST request
         if (!hasError) {
             try {
-                const response = await axios.post('http://localhost:8080/api/auth/login', { email, password }, { withCredentials: true });
+                const response = await axios.post('https://notes-mern-api-2bpf.onrender.com/api/auth/login', { email, password }, { withCredentials: true });
                 console.log(response.data.message);
                 alert(response.data.message)
                 navigate('/');

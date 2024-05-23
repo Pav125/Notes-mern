@@ -43,7 +43,7 @@ const Signup = () => {
         if (!formValid) return;
 
         try {
-            const response = await axios.post('http://localhost:8080/api/auth/signup',
+            const response = await axios.post('https://notes-mern-api-2bpf.onrender.com/api/auth/signup',
                 { email, username, password },
                 { withCredentials: true }
             );
