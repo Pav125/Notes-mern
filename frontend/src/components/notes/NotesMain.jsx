@@ -91,7 +91,7 @@ function NotesMain() {
                     </div>
                 </>
             )}
-            {token && (
+            {!token && (
                 <div>
                     <p>You are not authorized to access this page. Please login.</p>
                 </div>
