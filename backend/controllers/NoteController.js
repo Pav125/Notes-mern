@@ -4,6 +4,7 @@ const Note = require('../models/NoteModel')
 const getNotes = async (req, res) => {
     try {
         const notes = await Note.find({ user: req.user._id }).sort({ createdAt: -1 });
+        console.log(notes); // Add this line for debugging
         res.status(200).json({ notes, user: req.user })
     } catch (error) {
         res.status(500).json({ message: error.message })
