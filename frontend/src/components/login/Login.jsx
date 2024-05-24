@@ -51,7 +51,7 @@ const Login = () => {
                 );
                 const { token } = response.data
                 localStorage.setItem('authToken', token)
-                console.log(token)
+                // console.log(token)
                 console.log(response.data.message);
                 alert(response.data.message)
                 navigate('/');

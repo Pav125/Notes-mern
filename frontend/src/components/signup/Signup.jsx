@@ -51,7 +51,7 @@ const Signup = () => {
             console.log(response.data);
             const {token} = response.data
             localStorage.setItem('authToken',token)
-            console.log(token)
+            // console.log(token)
             alert(response.data.message) 
             navigate('/');
         } catch (error) {

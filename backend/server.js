@@ -17,7 +17,6 @@ app.use(
         origin: ['https://mymemo.vercel.app','http://localhost:3001'], // 'https://mymemo.vercel.app','http://localhost:3000'
         methods: ['GET', 'POST', 'PUT', 'DELETE'],
         credentials: true,
-        // allowedHeaders: ['Content-Type', 'Authorization']
     })
 )
 
