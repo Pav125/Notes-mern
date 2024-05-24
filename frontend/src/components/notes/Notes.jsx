@@ -36,7 +36,7 @@ const Notes = ({ addNote, user }) => {
                         <textarea
                             name="note"
                             id="note"
-                            rows="5"
+                            rows="3"
                             className="form-control"
                             value={note}
                             onChange={(e) => setNote(e.target.value)}
