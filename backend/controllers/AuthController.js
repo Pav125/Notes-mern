@@ -16,20 +16,25 @@ module.exports.Signup = async (req, res, next) => {
         }
 
         const user = await User.create({ email, username, password, createdAt })
-        const token = createSecretToken(user._id)
 
-        res.cookie('token', token, {
-            withCredentials: true,
-            httpOnly: true,
-            secure: true,
-            sameSite: 'none',
-            domain: 'https://mymemo.vercel.app'
-        })
+        // res.cookie('token', token, {
+        //     withCredentials: true,
+        //     httpOnly: true,
+        //     secure: true,
+        //     sameSite: 'none',
+        //     domain: 'https://mymemo.vercel.app'
+        // })
 
         res
             .status(201)
-            .json({ message: 'Account created successfully', state: true, user })
-
+            .json(
+                { 
+                    message: 'Account created successfully', 
+                    state: true, 
+                    user,
+                    token: createSecretToken(user._id)
+                })
+        
         next();
 
     } catch (error) {
@@ -55,19 +60,23 @@ module.exports.Login = async (req, res, next) => {
 
         if (!authUser) {
             return res.status(400).json({ message: "Invalid credentials" })
-        }
+         }
 
-        const token = createSecretToken(user._id)
+        // res.cookie('token', token, {
+        //     withCredentials: true,
+        //     httpOnly: true,
+        //     secure: true,
+        //     sameSite: 'none',
+        //     domain: 'https://mymemo.vercel.app'
+        // })
 
-        res.cookie('token', token, {
-            withCredentials: true,
-            httpOnly: true,
-            secure: true,
-            sameSite: 'none',
-            domain: 'https://mymemo.vercel.app'
-        })
-
-        res.status(200).json({ message: "Yay! logged in successfully", state: true, user })
+        res.status(200).json(
+            { 
+                message: "Yay! logged in successfully", 
+                state: true, 
+                user,
+                token: createSecretToken(user._id)
+            })
         next();
 
     } catch (error) {

@@ -3,26 +3,45 @@ require('dotenv').config();
 const User = require('../models/AuthModel');
 
 const authenticateToken = (req, res, next) => {
-    const token = req.cookies.token;
+    let token;
+
+    if (req.headers.authorization && req.headers.authorization.startsWith('Bearer')) {
+        // Get token from header
+        token = req.headers.authorization.split(' ')[1]
+    }
     if (!token) {
         return res.status(401).json({ message: 'Access Denied' });
     }
 
-    jwt.verify(token, process.env.TOKEN_KEY, async (err, decoded) => {
-        if (err) {
-            return res.status(403).json({ message: 'Invalid Token' });
+    // verify the token
+    jwt.verify(token, process.env.TOKEN_KEY, async (error, decoded) => {
+        if (error) {
+            res.status(401).json({ message: 'Invalid Token' })
         }
         try {
+
+            // Get user from the token
             const user = await User.findById(decoded.id).select('-password');
+
+            // check if user exists
             if (!user) {
                 return res.status(404).json({ message: 'User not found' });
             }
+
+            // Attach user to request object
             req.user = user;
-            next();
+
+            next();  // calling next middleware
         } catch (error) {
-            res.status(500).json({ message: error.message });
+            console.log(error);
+            res.status(500).json({ message: 'Not Authorized' });
         }
-    });
+    })
+
+    if (!token) {
+        return res.status(401).json({ message: 'Access Denied' });
+    }
 };
 
 module.exports = authenticateToken;
+

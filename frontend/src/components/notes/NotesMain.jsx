@@ -2,23 +2,26 @@ import Notes from './Notes';
 import NoteList from './NoteList';
 import { useEffect, useState, useMemo } from 'react';
 import axios from 'axios';
-import { useCookies } from 'react-cookie';
 import Nav from '../nav/Nav';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
-function NotesMain() {
 
-    const [cookies] = useCookies([]);
+function NotesMain() {
+    const token = localStorage.getItem('authToken')
     const [user, updateUser] = useState('');
     const [notes, setNotes] = useState([]);
 
     const api = useMemo(() => axios.create({ baseURL: 'https://notes-api-1i7v.onrender.com/api/notes' }), []);
-
+    // https://notes-api-1i7v.onrender.com
     useEffect(() => {
         const fetchNotes = async () => {
             try {
-                const { data } = await api.get('/', { withCredentials: true });
+                const { data } = await api.get('/', {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
                 updateUser(data.user.username);
                 setNotes(data.notes);
                 // console.log(data);
@@ -28,11 +31,15 @@ function NotesMain() {
             }
         };
         fetchNotes();
-    }, [api, cookies]);
+    }, [api, token]);
 
     const deleteNote = async (id) => {
         try {
-            await api.delete(`/${id}`, { withCredentials: true });
+            await api.delete(`/${id}`, {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            });
             setNotes(notes.filter((note) => note._id !== id));
         } catch (error) {
             console.error('Error deleting note: ', error);
@@ -41,7 +48,11 @@ function NotesMain() {
 
     const updateNote = async (id, updatedTitle, updatedNote) => {
         try {
-            const { data } = await api.put(`/${id}`, { title: updatedTitle, note: updatedNote }, { withCredentials: true });
+            const { data } = await api.put(`/${id}`, { title: updatedTitle, note: updatedNote }, {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            });
             setNotes(notes.map((note) => note._id === id ? data : note));
             console.log(data);
         } catch (error) {
@@ -51,7 +62,11 @@ function NotesMain() {
 
     const addNote = async (newdata) => {
         try {
-            const { data } = await api.post('/', newdata, { withCredentials: true });
+            const { data } = await api.post('/', newdata, {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            });
             setNotes([...notes, data]);
             console.log(data);
         } catch (error) {
@@ -61,7 +76,7 @@ function NotesMain() {
 
     return (
         <div>
-            {cookies.token && (
+            {token && (
                 <>
                     <Nav />
                     <div className="container mt-5">
@@ -76,7 +91,7 @@ function NotesMain() {
                     </div>
                 </>
             )}
-            {!cookies.token && (
+            {token && (
                 <div>
                     <p>You are not authorized to access this page. Please login.</p>
                 </div>

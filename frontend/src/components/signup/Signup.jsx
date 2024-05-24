@@ -44,10 +44,14 @@ const Signup = () => {
 
         try {
             const response = await axios.post('https://notes-api-1i7v.onrender.com/api/auth/signup',
+            // https://notes-api-1i7v.onrender.com/api/auth/signup
                 { email, username, password },
-                { withCredentials: true }
+                // { withCredentials: true }
             );
             console.log(response.data);
+            const {token} = response.data
+            localStorage.setItem('authToken',token)
+            console.log(token)
             alert(response.data.message) 
             navigate('/');
         } catch (error) {

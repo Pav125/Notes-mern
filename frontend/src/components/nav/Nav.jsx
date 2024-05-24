@@ -1,32 +1,23 @@
-import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
-import Cookies from 'universal-cookie';
 import './Nav.css';
 
 const Nav = () => {
-    const [, removeCookie] = useCookies([]);
+    const token = localStorage.getItem('authToken')
     const navigate = useNavigate();
-    const cookies = new Cookies();
 
-    const handleLogOut = async () => {
-        console.time('cookieRemoval'); // Start timer
+    const handleLogOut = () => {
         try {
-            await removeCookie('token', { path: '/', domain: 'mymemo.vercel.app' });
-            cookies.remove('token', { path: "/", domain: "mymemo.vercel.app" });
-            console.log(cookies.token);
-            console.log(cookies);
+            localStorage.removeItem('authToken')
             navigate('/login');
             alert('Logged out succesfully')
         } catch (error) {
-            console.error('Error removing cookie:', error);
-        } finally {
-            console.timeEnd('cookieRemoval'); // Stop timer
+            console.error('Error removing token:', error);
         }
     };
 
     return (
         <>
-            {cookies && (
+            {token && (
                 <>
                     <nav className="navbar navbar-expand-lg navbar-custom">
                         <div className="container-fluid ms-3 mr-3">

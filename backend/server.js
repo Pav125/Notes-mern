@@ -6,7 +6,7 @@ const NoteRoute = require('./routes/NoteRoute')
 const AuthRoute = require('./routes/AuthRoute')
 require('dotenv').config()
 const { MONGO_URL } = process.env
-const PORT = process.env.PORT || 4000;
+const PORT = process.env.PORT;
 
 const cookiesMiddleware = require('universal-cookie-express');
 
@@ -14,7 +14,7 @@ const app = express()
 
 app.use(
     cors({
-        origin: ['https://mymemo.vercel.app','http://localhost:3000'], // 'https://mymemo.vercel.app','http://localhost:3000'
+        origin: ['https://mymemo.vercel.app','http://localhost:3001'], // 'https://mymemo.vercel.app','http://localhost:3000'
         // methods: ['GET', 'POST', 'PUT', 'DELETE'],
         credentials: true,
         // allowedHeaders: ['Content-Type', 'Authorization']
@@ -42,7 +42,7 @@ mongoose.connect(
     .then(() => {
         console.log('Connected to Database !')
         app.listen(PORT, () => {
-            console.log('server is listening on 8080')
+            console.log('server is listening on 8080 || 4000')
         })
     })
     .catch((error) => {
