@@ -8,6 +8,7 @@ const Login = () => {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [loading, setLoading] = useState(false)
     const navigate = useNavigate();
 
     const [errors, setErrors] = useState({
@@ -19,7 +20,7 @@ const Login = () => {
 
     const handleLogin = async (e) => {
         e.preventDefault();
-
+        setLoading(true)
         let hasError = false; // Flag to check if there are any errors
 
         if (email.trim() === '') {
@@ -62,6 +63,8 @@ const Login = () => {
                     console.error('Login failed:', error.response.data.message);
                     alert('Login failed');
                 }
+            }finally{
+                setLoading(false)
             }
         }
     };
@@ -88,7 +91,11 @@ const Login = () => {
                                 <input type="password" id="password" className="form-control" value={password} onChange={(e) => setPassword(e.target.value)} required />
                                 {errors.password && <span className='text-danger'>{errors.password}</span>}
                             </div>
-                            <button type="submit" className="btn btn-primary w-100">Login</button>
+                            <button type="submit" className="btn btn-primary w-100" disabled={loading}>
+                                {
+                                    loading ? 'Loading...' : 'Login'
+                                }
+                            </button>
                         </form>
                         <div className="mt-3 text-center">
                             <h5>New user? <Link to='/signup'>Signup</Link></h5>
